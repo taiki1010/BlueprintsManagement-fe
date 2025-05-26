@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "図面管理システム",
-  description: "図面を管理するシステムです",
+  description: "図面を管理するシステムです。",
 };
 
 export default function RootLayout({
