@@ -22,7 +22,6 @@ const DeleteSiteModal = ({id, isOpenDeleteModal, setIsOpenDeleteModal}: PropsTyp
     };
   }, [modalRef, setIsOpenDeleteModal]);
 
-  
   return (
     <>
       {isOpenDeleteModal &&

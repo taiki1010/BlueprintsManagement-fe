@@ -1,11 +1,10 @@
 "use client"
 
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import EditSiteModal from "../Modal/EditSiteModal";
 import DeleteSiteModal from "../Modal/DeleteSiteModal";
 import {  useSiteIdContext } from "@/context/SiteIdContext";
-import { useErrorBoundary } from "react-error-boundary";
 
 export interface SiteInfoType {
   id: string;
@@ -21,16 +20,13 @@ const SiteInfo = () => {
   const [siteInfo, setSiteInfo] = useState<Partial<SiteInfoType>>({})
   const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false);
-  const {showBoundary} = useErrorBoundary();
 
   useEffect(() => {
     const getSite = async() => {
       const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/sites/${id}`);
 
       if(response.status !== 200) {
-        const data = await response.json();
-        const errorMessage = data.message as string;
-        showBoundary(errorMessage);
+        redirect("/management");
       }
 
       const site = await response.json() as SiteInfoType;
@@ -40,6 +36,8 @@ const SiteInfo = () => {
     }
     getSite();
   }, [params.id])
+
+  console.log(siteInfo);
 
   return (
     <div className="h-full flex flex-col justify-between">
