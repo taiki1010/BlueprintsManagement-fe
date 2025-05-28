@@ -1,6 +1,11 @@
+import { redirect } from 'next/navigation'
+import React from 'react'
 
-export default function Home() {
+const Main = () => {
+  redirect("/management");
   return (
-    <div>MainPage</div>
-  );
+    <div>Main</div>
+  )
 }
+
+export default Main
