@@ -25,9 +25,7 @@ export const addSite = async(state: FormState, formData: FormData) => {
   const result = await response.json();
   
   if(!response.ok) {
-    state.error = result.message;
-    console.log(state.error);
-    return state;
+    return {error: result.message};
   }
 
   const id = result.id;
@@ -53,8 +51,7 @@ export const editSite = async(id:string, state: FormState, formData: FormData) =
   const result = await response.json();
 
   if(!response.ok) {
-    state.error = result.message;
-    return state;
+    return {error: result.message}
   }
 
   redirect(`/management/sites/${id}`);

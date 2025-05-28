@@ -9,7 +9,7 @@ const NavList = async () => {
   const getAllSites = async (): Promise<SiteItemType[]> => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/sites`);
 
-    if(response.status !== 200) throw new Error();
+    if(response.status !== 200) throw new Error("サーバーとの接続中にエラーが発生しました");
 
     const sites = await response.json();
     return sites as SiteItemType[];

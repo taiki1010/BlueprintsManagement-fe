@@ -20,10 +20,8 @@ const EditSiteModal = ({siteInfo, isOpenEditModal, setIsOpenEditModal}: PropsTyp
 
   const editSiteWithId = editSite.bind(null,id || "");
 
-  const initialState = { error: "エラーが発生しました" }
+  const initialState = { error: "" }
   const [state, formAction, isPending] = useActionState(editSiteWithId, initialState);
-
-
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import EditSiteModal from "../Modal/EditSiteModal";
 import DeleteSiteModal from "../Modal/DeleteSiteModal";
 import {  useSiteIdContext } from "@/context/SiteIdContext";
+import { useErrorBoundary } from "react-error-boundary";
 
 export interface SiteInfoType {
   id: string;
@@ -20,7 +21,8 @@ const SiteInfo = () => {
   const [siteInfo, setSiteInfo] = useState<Partial<SiteInfoType>>({})
   const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false);
-  
+  const {showBoundary} = useErrorBoundary();
+
   useEffect(() => {
     const getSite = async() => {
       const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/sites/${id}`);
@@ -28,11 +30,11 @@ const SiteInfo = () => {
       if(response.status !== 200) {
         const data = await response.json();
         const errorMessage = data.message as string;
-        console.error(errorMessage);
-        throw new Error(errorMessage);
+        showBoundary(errorMessage);
       }
 
       const site = await response.json() as SiteInfoType;
+
       setSiteInfo(site);
       siteIdValue.setSiteId(site.id);
     }
