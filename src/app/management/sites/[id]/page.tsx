@@ -1,12 +1,11 @@
-import BlueprintMenu from "@/components/BlueprintMenu/BlueprintMenu"
+import SiteInfo from "@/components/Site/SiteInfo/SiteInfo"
 
 
 const SitePage = () => {
   return (
-    <>
-      <BlueprintMenu />
-    </>
-    
+    <div className="h-full px-10 py-10">
+      <SiteInfo />
+    </div>
   )
 }
 

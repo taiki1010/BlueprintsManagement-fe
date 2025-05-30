@@ -1,9 +1,6 @@
 "use client";
 
-import SiteInfo from "@/components/Site/SiteInfo/SiteInfo";
-import SiteIdProvider from "@/context/SiteIdContext";
-
-
+import BlueprintMenu from "@/components/BlueprintMenu/BlueprintMenu";
 
 const ManagementLayout = ({
   children,
@@ -11,14 +8,10 @@ const ManagementLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <SiteIdProvider>
-      <div className="flex h-full">
-        <div className="flex-1 px-10 py-10">
-          <SiteInfo />
-        </div>
-        <div className="h-screen">{children}</div>
-      </div>
-    </SiteIdProvider>
+    <div className="flex h-full">
+      <div className="h-screen flex-1">{children}</div>
+      <BlueprintMenu />
+    </div>
   )
 }
 

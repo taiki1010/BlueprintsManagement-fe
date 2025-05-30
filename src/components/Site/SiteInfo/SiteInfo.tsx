@@ -4,7 +4,7 @@ import { redirect, useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import EditSiteModal from "../Modal/EditSiteModal";
 import DeleteSiteModal from "../Modal/DeleteSiteModal";
-import {  useSiteIdContext } from "@/context/SiteIdContext";
+import {  useSiteInfoContext } from "@/context/SiteInfoContext";
 
 export interface SiteInfoType {
   id: string;
@@ -16,7 +16,7 @@ export interface SiteInfoType {
 const SiteInfo = () => {
   const params = useParams();
   const id = params.id as string;
-  const siteIdValue = useSiteIdContext();
+  const siteIdValue = useSiteInfoContext();
   const [siteInfo, setSiteInfo] = useState<Partial<SiteInfoType>>({})
   const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false);
@@ -36,8 +36,6 @@ const SiteInfo = () => {
     }
     getSite();
   }, [params.id])
-
-  console.log(siteInfo);
 
   return (
     <div className="h-full flex flex-col justify-between">

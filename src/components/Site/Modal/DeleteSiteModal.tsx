@@ -26,7 +26,7 @@ const DeleteSiteModal = ({id, isOpenDeleteModal, setIsOpenDeleteModal}: PropsTyp
     <>
       {isOpenDeleteModal &&
         <div className="fixed z-10 top-0 left-0 w-full h-full bg-black/80">
-          <div className="relative z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] md:max-h-[90vh] w-[97vw] md:w-[40vw] p-4 md:p-10 md:pb-20 bg-slate-100 border-2 border-neutral-950 shadow-lg rounded-xl overflow-auto" ref={modalRef}>
+          <div className="relative z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] md:max-h-[90vh] w-[97vw] md:w-[40vw] p-4 md:p-10 md:pb-10 bg-slate-100 border-2 border-neutral-950 shadow-lg rounded-xl overflow-auto" ref={modalRef}>
             <h2 className="text-2xl font-bold mb-8">現場情報を削除してもよろしいですか？</h2>
             <div className="flex gap-8">
               <button onClick={() => {deleteSite(id)}} className="basis-1/2 block text-white text-2xl font-bold w-full h-14 rounded-md bg-red-500 hover:bg-red-600 cursor-pointer">削除</button>

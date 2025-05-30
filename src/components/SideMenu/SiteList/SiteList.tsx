@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import SiteItem from "./SiteItem/SiteItem";
 
 interface SiteItemType {
@@ -5,19 +6,21 @@ interface SiteItemType {
   name: string;
 }
 
-const NavList = async () => {
-  const getAllSites = async (): Promise<SiteItemType[]> => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/sites`);
+const NavList = () => {
+  const [siteList, setSiteList] = useState<SiteItemType[]>([]);
 
-    if(response.status == 404) return [];
+  useEffect(() => {
+    const getAllSites = async () => {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/sites`);
+      if(response.status == 404) return [];
+      if(response.status !== 200) throw new Error("サーバーとの接続中にエラーが発生しました");
 
-    if(response.status !== 200) throw new Error("サーバーとの接続中にエラーが発生しました");
-
-    const sites = await response.json();
-    return sites as SiteItemType[];
-  }
-
-  const siteList = await getAllSites();
+      const sites = await response.json();
+      setSiteList(sites);
+    }
+    getAllSites();
+  }, [])
+  
 
   const renderSiteList = () => {
     if(siteList.length == 0) {
