@@ -36,7 +36,10 @@ const BlueprintInfo = () => {
     getBlueprint();
   }, [])
 
-  const imageUrl = blueprintInfo.architecturalDrawingList?.[0]?.filePath as string
+  // image/xxxxx.pngと言う値がfilePathに入る
+  const filePath = blueprintInfo.architecturalDrawingList?.[0]?.filePath
+  // バックエンドのホストにfilePathの値を結合して、画像のURLを作る
+  const imageUrl = filePath ? `${process.env.NEXT_PUBLIC_ENDPOINT}/${filePath}` : undefined
   console.log(imageUrl);
 
   return (
@@ -49,7 +52,7 @@ const BlueprintInfo = () => {
         </div>
       </div>
       <div>
-        <Image src={imageUrl} width={500} height={500} alt="" />
+        {imageUrl && <Image src={imageUrl} width={500} height={500} alt="" />}
       </div>
     </div>
   )
