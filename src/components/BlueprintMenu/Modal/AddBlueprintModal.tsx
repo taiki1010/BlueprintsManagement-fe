@@ -1,22 +1,20 @@
+"use client";
 import { addBlueprint } from "@/app/actions/blueprintAction";
-import { useSiteInfoContext } from "@/context/SiteInfoContext";
 import { useActionState, useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
-interface PropsType {
-  isOpenAddModal: boolean;
-  setIsOpenAddModal: React.Dispatch<React.SetStateAction<boolean>>;
+interface Props {
+  siteId: string;
 }
 
-const AddBlueprintModal = ({isOpenAddModal, setIsOpenAddModal}: PropsType) => {
+const AddBlueprintModal = ({siteId}: Props) => {
+    const [isOpenAddModal, setIsOpenAddModal] = useState(false);
 
     const modalRef = useRef(null);
     const [inputName, setInputName] = useState<string>("");
     const Today = new Date();
     const [date, setDate] = useState<Date | null>(Today);
-    const siteIdValue = useSiteInfoContext();
-    const siteId = siteIdValue.siteId;
 
     const addBlueprintWithSiteId = addBlueprint.bind(null, siteId);
 
@@ -37,6 +35,8 @@ const AddBlueprintModal = ({isOpenAddModal, setIsOpenAddModal}: PropsType) => {
 
   return (
     <>
+      <button onClick={() => setIsOpenAddModal(true)} className="text-white py-1 px-2 rounded-md bg-slate-800 hover:bg-slate-600 cursor-pointer">追加</button>
+
       {isOpenAddModal &&
         <div className="fixed z-10 top-0 left-0 w-full h-full bg-black/80">
           <div className="relative z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] md:max-h-[90vh] w-[97vw] md:w-[60vw] p-4 md:p-10 md:pb-10 bg-slate-100 border-2 border-neutral-950 shadow-lg rounded-xl overflow-auto" ref={modalRef}>

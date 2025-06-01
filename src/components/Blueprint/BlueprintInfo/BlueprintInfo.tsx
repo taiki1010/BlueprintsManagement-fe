@@ -1,9 +1,9 @@
-"use client";
-
 import { getBlueprintInfo } from "@/app/actions/blueprintAction";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react"
+
+interface Props {
+  blueprintId: string;
+}
 
 interface Blueprint {
   id: string;
@@ -23,18 +23,8 @@ interface BlueprintInfoType {
   architecturalDrawingList: ArchitecturalDrawing[]
 }
 
-const BlueprintInfo = () => {
-  const params = useParams();
-  const blueprintId = params.blueprintId as string;
-  const [blueprintInfo, setBlueprintInfo] = useState<Partial<BlueprintInfoType>>({});
-
-  useEffect(() => {
-    const getBlueprint = async() => {
-      const response = await getBlueprintInfo(blueprintId) as BlueprintInfoType;
-      setBlueprintInfo(response);
-    }
-    getBlueprint();
-  }, [])
+const BlueprintInfo = async ({blueprintId}: Props) => {
+  const blueprintInfo = await getBlueprintInfo(blueprintId) as BlueprintInfoType;
 
   // image/xxxxx.pngと言う値がfilePathに入る
   const filePath = blueprintInfo.architecturalDrawingList?.[0]?.filePath

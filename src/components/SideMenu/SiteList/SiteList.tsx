@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import SiteItem from "./SiteItem/SiteItem";
 
 interface SiteItemType {
@@ -6,37 +5,22 @@ interface SiteItemType {
   name: string;
 }
 
-const NavList = () => {
-  const [siteList, setSiteList] = useState<SiteItemType[]>([]);
+const NavList = async () => {
 
-  useEffect(() => {
-    const getAllSites = async () => {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/sites`);
-      if(response.status == 404) return [];
-      if(response.status !== 200) throw new Error("サーバーとの接続中にエラーが発生しました");
+  const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/sites`);
+  if(response.status == 404) return [];
+  if(response.status !== 200) throw new Error("サーバーとの接続中にエラーが発生しました");
 
-      const sites = await response.json();
-      setSiteList(sites);
-    }
-    getAllSites();
-  }, [])
-  
-
-  const renderSiteList = () => {
-    if(siteList.length == 0) {
-      return <p className="px-2">現場が登録されていません</p>
-    } else {
-      return (
-        siteList.map((site) => (
-          <SiteItem key={site.id} id={site.id} name={site.name} />
-        ))
-      )
-    }
-  }
+  const sites = await response.json() as SiteItemType[];
 
   return (
     <div className="flex flex-col">
-      {renderSiteList()}
+      {sites.length === 0
+        ? <p className="px-2">現場が登録されていません</p>
+        : sites.map((site) => (
+            <SiteItem key={site.id} id={site.id} name={site.name} />
+          ))
+      }
     </div>
   )
 }

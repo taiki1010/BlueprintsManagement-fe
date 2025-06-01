@@ -1,6 +1,6 @@
 import AddSiteForm from "@/components/Site/AddSiteForm/AddSiteForm"
 
-const AddSitePage = () => {
+const AddSitePage = ()=> {
   return (
     <AddSiteForm />
   )
