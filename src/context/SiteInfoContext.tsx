@@ -3,7 +3,7 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 
 
-export const SiteIdContext = createContext<{
+export const SiteInfoContext = createContext<{
   setSiteId: Dispatch<SetStateAction<string>>;
   siteId: string;
 }>({
@@ -11,22 +11,23 @@ export const SiteIdContext = createContext<{
   siteId: "",
 })
 
-export const useSiteIdContext = () => {
-  return useContext(SiteIdContext)
+export const useSiteInfoContext = () => {
+  return useContext(SiteInfoContext)
 }
 
-const SiteIdProvider = ({children}: {children: ReactNode}) => {
+const SiteInfoProvider = ({children}: {children: ReactNode}) => {
   const [siteId, setSiteId] = useState<string>("");
+
   const contextValue = {
     setSiteId: setSiteId,
-    siteId: siteId
+    siteId: siteId,
   };
 
   return (
-    <SiteIdContext.Provider value={contextValue}>
+    <SiteInfoContext.Provider value={contextValue}>
     {children}
-    </SiteIdContext.Provider>
+    </SiteInfoContext.Provider>
   );
 };
 
-export default SiteIdProvider;
+export default SiteInfoProvider;

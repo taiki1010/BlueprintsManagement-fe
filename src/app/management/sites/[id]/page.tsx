@@ -1,12 +1,21 @@
-import BlueprintMenu from "@/components/BlueprintMenu/BlueprintMenu"
+import SiteInfo from "@/components/Site/SiteInfo/SiteInfo"
+import { redirect } from "next/navigation";
 
+const SitePage = async({
+  params
+}: {
+  params: Promise<{ id: string }>
+}) => {
+  const {id} = await params;
 
-const SitePage = () => {
+  if(!id) {
+    redirect("/management");
+  }
+
   return (
-    <>
-      <BlueprintMenu />
-    </>
-    
+    <div className="h-full px-10 py-10">
+      <SiteInfo id={id}/>
+    </div>
   )
 }
 

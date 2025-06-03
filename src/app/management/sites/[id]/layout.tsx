@@ -1,24 +1,18 @@
-"use client";
+import BlueprintMenu from "@/components/BlueprintMenu/BlueprintMenu";
 
-import SiteInfo from "@/components/Site/SiteInfo/SiteInfo";
-import SiteIdProvider from "@/context/SiteIdContext";
-
-
-
-const ManagementLayout = ({
-  children,
+const ManagementLayout = async ({
+  children, params
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ id: string }>
 }>) => {
+  const {id} = await params;
+  
   return (
-    <SiteIdProvider>
-      <div className="flex h-full">
-        <div className="flex-1 px-10 py-10">
-          <SiteInfo />
-        </div>
-        <div className="h-screen">{children}</div>
-      </div>
-    </SiteIdProvider>
+    <div className="flex h-full">
+      <div className="h-screen flex-1">{children}</div>
+      <BlueprintMenu siteId={id} />
+    </div>
   )
 }
 

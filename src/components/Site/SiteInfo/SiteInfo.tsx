@@ -1,10 +1,4 @@
-"use client"
-
-import { redirect, useParams } from "next/navigation";
-import { useState, useEffect } from "react";
-import EditSiteModal from "../Modal/EditSiteModal";
-import DeleteSiteModal from "../Modal/DeleteSiteModal";
-import {  useSiteIdContext } from "@/context/SiteIdContext";
+import EditOrDeleteModal from "../Modal/EditOrDeleteModal";
 
 export interface SiteInfoType {
   id: string;
@@ -13,31 +7,15 @@ export interface SiteInfoType {
   remark: string;
 }
 
-const SiteInfo = () => {
-  const params = useParams();
-  const id = params.id as string;
-  const siteIdValue = useSiteIdContext();
-  const [siteInfo, setSiteInfo] = useState<Partial<SiteInfoType>>({})
-  const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false);
-  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false);
+interface SiteInfoProps {
+  id: string
+}
 
-  useEffect(() => {
-    const getSite = async() => {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/sites/${id}`);
+const SiteInfo = async({id}: SiteInfoProps) => {
 
-      if(response.status !== 200) {
-        redirect("/management");
-      }
+  const response = await fetch(`${process.env.ENDPOINT}/sites/${id}`);
+  const siteInfo = await response.json() as SiteInfoType;
 
-      const site = await response.json() as SiteInfoType;
-
-      setSiteInfo(site);
-      siteIdValue.setSiteId(site.id);
-    }
-    getSite();
-  }, [params.id])
-
-  console.log(siteInfo);
 
   return (
     <div className="h-full flex flex-col justify-between">
@@ -47,14 +25,7 @@ const SiteInfo = () => {
         <p className="text-2xl">{siteInfo.remark}</p>
       </div>
       
-      <div>
-        <button onClick={()=>setIsOpenEditModal(true)} className="text-2xl text-white px-4 py-2 rounded-md mr-6 cursor-pointer bg-slate-500 hover:bg-slate-600">修正</button>
-        <button onClick={() => setIsOpenDeleteModal(true)} className="text-2xl text-white px-4 py-2 rounded-md cursor-pointer bg-red-500 hover:bg-red-600">削除</button>
-      </div>
-
-      {isOpenEditModal && <EditSiteModal siteInfo={siteInfo} isOpenEditModal={isOpenEditModal} setIsOpenEditModal={setIsOpenEditModal} />}
-      {isOpenDeleteModal && <DeleteSiteModal id={id} isOpenDeleteModal={isOpenDeleteModal} setIsOpenDeleteModal={setIsOpenDeleteModal} /> }
-
+      <EditOrDeleteModal siteInfo={siteInfo}/>
     </div>
   )
 }

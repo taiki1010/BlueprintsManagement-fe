@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 
 interface SiteItemProps {
   id: string;
@@ -9,9 +9,11 @@ interface SiteItemProps {
 }
 
 const SiteItem:React.FC<SiteItemProps> = ({id, name}) => {
-  const pathname = usePathname();
+  const params = useParams();
+  const siteId = params.id;
+
   return (
-    <Link href={`/management/sites/${id}`} className={`py-2 px-2 hover:bg-gray-700 hover:cursor-pointer ${pathname === "/management/sites/" + id ? "bg-gray-700": ""}`}>{name}</Link>
+    <Link href={`/management/sites/${id}`} className={`py-2 px-2 hover:bg-gray-700 hover:cursor-pointer ${siteId == id ? "bg-gray-700": ""}`}>{name}</Link>
   )
 }
 
