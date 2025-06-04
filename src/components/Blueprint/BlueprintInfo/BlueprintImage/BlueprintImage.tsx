@@ -38,7 +38,7 @@ const BlueprintImage = ({blueprintInfo}: {blueprintInfo: BlueprintInfoType}) => 
   }
 
   return (
-    <div className="flex flex-col justify-between h-full">
+    <div className="flex flex-col justify-between h-full gap-5">
       <div className="flex justify-between">
         <div className="flex gap-5">
           <h2 className="text-4xl font-bold">{blueprintInfo.blueprint?.name}</h2>
@@ -56,7 +56,7 @@ const BlueprintImage = ({blueprintInfo}: {blueprintInfo: BlueprintInfoType}) => 
         
       </div>
       <div className="relative h-full">
-        {imageUrl && <Image src={imageUrl} fill alt=""/>}
+        {imageUrl && <Image src={imageUrl} fill style={{objectFit: "contain"}} alt=""/>}
       </div>
     </div>
   )
