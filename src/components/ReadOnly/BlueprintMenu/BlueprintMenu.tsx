@@ -1,0 +1,18 @@
+import BlueprintList from "./BlueprintList/BlueprintList";
+
+interface Props {
+  siteId: string;
+}
+
+const BlueprintMenu = ({siteId}: Props) => {
+  return (
+    <div className="h-screen w-56 pt-8 bg-slate-300">
+      <div className="flex border-b pb-4 px-2 mb-4">
+        <h2 className="mr-4 text-2xl">図面一覧</h2>
+      </div>
+      <BlueprintList siteId={siteId} />
+    </div>
+  )
+}
+
+export default BlueprintMenu

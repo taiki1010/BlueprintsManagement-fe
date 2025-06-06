@@ -1,24 +1,19 @@
 "use client"
 
-import Image from "next/image";
-import { ArchitecturalDrawing, BlueprintInfoType } from "../BlueprintInfo"
 import { useState } from "react";
-import UpdateOrDeleteModal from "../Modal/UpdateOrDeleteModal";
-import EditModal from "../Modal/EditModal";
-
+import { ArchitecturalDrawing, BlueprintInfoType } from "../BlueprintInfo"
+import Image from "next/image";
 
 const BlueprintImage = ({blueprintInfo}: {blueprintInfo: BlueprintInfoType}) => {
+  console.log(blueprintInfo);
 
-  const blueprintName = blueprintInfo.blueprint.name;
   const architecturalDrawingList = blueprintInfo.architecturalDrawingList;
   const sorttedArchitecturalDrawingList = architecturalDrawingList.sort((a, b) => {
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   })
 
-  const createdAtList = sorttedArchitecturalDrawingList.map((item) => item.createdAt);
-
   const initialArchitecturalDrawing = sorttedArchitecturalDrawingList[0];
-
+  
   const [architecturalDrawing, setArchitecturalDrawing] = useState<ArchitecturalDrawing>(initialArchitecturalDrawing);
   const [selected, setSelected] = useState<string>(initialArchitecturalDrawing.id);
 
@@ -42,14 +37,12 @@ const BlueprintImage = ({blueprintInfo}: {blueprintInfo: BlueprintInfoType}) => 
       <div className="flex justify-between">
         <div className="flex gap-5">
           <h2 className="text-4xl font-bold">{blueprintInfo.blueprint?.name}</h2>
-          <EditModal blueprintName={blueprintName}/>
         </div>
         
         <div className="flex gap-5">
-          <UpdateOrDeleteModal createdAtList={createdAtList} architecturalDrawing={architecturalDrawing}/>
           <select value={selected} onChange={(e) => handleChange(e)} className="border px-3 text-2xl rounded-md">
           {selectItems}
-        </select>
+          </select>
         </div>
       </div>
 
