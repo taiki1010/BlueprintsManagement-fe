@@ -7,7 +7,7 @@ interface SiteItemType {
 
 const NavList = async() => {
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/sites`);
+  const response = await fetch(`${process.env.ENDPOINT}/sites`);
   if(response.status == 404) return [];
   if(response.status !== 200) throw new Error("サーバーとの接続中にエラーが発生しました");
 
