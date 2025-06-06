@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link"
+import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
 interface Props {
@@ -14,7 +14,7 @@ const BlueprintItem = ({blueprintId, blueprintName}: Props) => {
   const pathname = usePathname();
 
   return (
-    <Link href={`/management/sites/${siteId}/blueprints/${blueprintId}`} className={`px-2 py-2 cursor-pointer hover:bg-slate-400 ${pathname === `/management/sites/${siteId}/blueprints/${blueprintId}`?"bg-slate-400" : ""}`}>{blueprintName}</Link>
+        <Link href={`/read/sites/${siteId}/blueprints/${blueprintId}`} className={`px-2 py-2 cursor-pointer hover:bg-slate-400 ${pathname === `/read/sites/${siteId}/blueprints/${blueprintId}`?"bg-slate-400" : ""}`}>{blueprintName}</Link>
   )
 }
 

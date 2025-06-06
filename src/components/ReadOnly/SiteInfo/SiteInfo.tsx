@@ -1,7 +1,5 @@
-import EditOrDeleteModal from "../Modal/EditOrDeleteModal";
-import ShareButton from "../ShareButton/ShareButton";
 
-export interface SiteInfoType {
+interface SiteInfoType {
   id: string;
   name: string;
   address: string;
@@ -16,20 +14,14 @@ const SiteInfo = async({id}: Props) => {
 
   const response = await fetch(`${process.env.ENDPOINT}/sites/${id}`);
   const siteInfo = await response.json() as SiteInfoType;
-
+  
   return (
     <div className="h-full flex flex-col justify-between">
       <div>
-        <div className="flex gap-5 mb-8">
-          <h2 className="text-6xl font-bold">{siteInfo.name}</h2>
-          <ShareButton id={id}/>
-        </div>
-        
+        <h2 className="text-6xl font-bold mb-8">{siteInfo.name}</h2>
         <p className="text-4xl mb-4">{siteInfo.address}</p>
         <p className="text-2xl">{siteInfo.remark}</p>
       </div>
-      
-      <EditOrDeleteModal siteInfo={siteInfo}/>
     </div>
   )
 }
