@@ -22,6 +22,7 @@ const DeleteBlueprintModal = ({isOpenDeleteModal, setIsOpenDeleteModal, architec
   const modalRef = useRef(null);
   const params = useParams<ParamsType>();
   const deleteBlueprintWithParams = deleteBlueprint.bind(null, architecturalDrawing, params)
+  console.log(architecturalDrawing);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -41,7 +42,8 @@ const DeleteBlueprintModal = ({isOpenDeleteModal, setIsOpenDeleteModal, architec
         <div className="fixed z-10 top-0 left-0 w-full h-full bg-black/80">
           <div className="relative z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[95vh] md:max-h-[90vh] w-[97vw] md:w-[40vw] p-4 md:p-10 md:pb-10 bg-slate-100 border-2 border-neutral-950 shadow-lg rounded-xl overflow-auto" ref={modalRef}>
 
-          <h2 className="text-4xl text-center font-bold mb-8">図面情報の削除</h2>
+          <h2 className="text-4xl font-bold text-center mb-8">図面の削除</h2>
+          <p className="text-2xl font-bold text-center mb-8">「{architecturalDrawing.createdAt}」の図面を<br/>削除してもよろしいですか？</p>
             <form action={deleteBlueprintWithParams} className="flex gap-8">
               <button type="submit" className="basis-1/2 block text-white text-2xl font-bold w-full h-14 rounded-md bg-red-500 hover:bg-red-600 cursor-pointer">削除</button>
               <button onClick={() => setIsOpenDeleteModal(false)} className="basis-1/2 block text-white text-2xl font-bold h-14 rounded-md bg-gray-500 hover:bg-gray-600 cursor-pointer">キャンセル</button>
