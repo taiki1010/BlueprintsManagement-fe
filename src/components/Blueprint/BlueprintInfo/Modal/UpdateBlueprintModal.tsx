@@ -49,9 +49,9 @@ const UpdateBlueprintModal = ({createdAtList, isOpenUpdateModal, setIsOpenUpdate
                 <DatePicker selected={date} name="createdAt" dateFormat="yyyy-MM-dd" onChange={(date) => setDate(date)} className="block py-1.5 px-2 w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300" required/>
               </div>
               <div className="mb-10">
-                <label htmlFor="blueprint" className="block text-2xl font-medium mb-2">図面
+                <label htmlFor="imageFile" className="block text-2xl font-medium mb-2">図面
                 </label>
-                <input type="file" id="blueprint" name="architecturalDrawing" className="block px-1.5 py-2 w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300 cursor-pointer" required/>
+                <input type="file" id="imageFile" name="imageFile" className="block px-1.5 py-2 w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300 cursor-pointer" required/>
               </div>
               {state.error && <p className="text-2xl font-bold text-red-500 mb-2">{state.error}</p>}
               <div className="flex gap-8">
