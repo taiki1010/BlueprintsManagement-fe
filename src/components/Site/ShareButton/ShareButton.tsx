@@ -2,15 +2,16 @@
 
 interface Props {
   id: string;
+  name: string;
 }
 
-const ShareButton = ({id}: Props) => {
+const ShareButton = ({id, name}: Props) => {
 
   const copyToClipboard = async() => {
     const url = `${process.env.NEXT_PUBLIC_DOMAIN}/read/sites/${id}`;
     try {
       await navigator.clipboard.writeText(url);
-      alert("共有用URLがクリップボードにコピーされました");
+      alert(name + "の共有用URLがクリップボードにコピーされました");
     } catch(err) {
       console.error(err);
       alert("クリップボードへのコピーが失敗しました");
