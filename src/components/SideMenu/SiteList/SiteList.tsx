@@ -5,35 +5,21 @@ interface SiteItemType {
   name: string;
 }
 
-const NavList = async () => {
-  const getAllSites = async (): Promise<SiteItemType[]> => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/sites`);
+const NavList = async() => {
 
-    if(response.status == 404) return [];
+  const response = await fetch(`${process.env.ENDPOINT}/sites`);
+  if(response.status == 404) return [];
+  if(response.status !== 200) throw new Error("サーバーとの接続中にエラーが発生しました");
 
-    if(response.status !== 200) throw new Error("サーバーとの接続中にエラーが発生しました");
-
-    const sites = await response.json();
-    return sites as SiteItemType[];
-  }
-
-  const siteList = await getAllSites();
-
-  const renderSiteList = () => {
-    if(siteList.length == 0) {
-      return <p className="px-2">現場が登録されていません</p>
-    } else {
-      return (
-        siteList.map((site) => (
-          <SiteItem key={site.id} id={site.id} name={site.name} />
-        ))
-      )
-    }
-  }
+  const sites = await response.json() as SiteItemType[];
 
   return (
     <div className="flex flex-col">
-      {renderSiteList()}
+      {sites.length === 0
+        ? <p className="px-2">現場が登録されていません</p>
+        : sites.map((site) => (
+          <SiteItem key={site.id} id={site.id} name={site.name}/>
+        ))}
     </div>
   )
 }

@@ -1,4 +1,3 @@
-
 import SideMenu from "@/components/SideMenu/SideMenu";
 
 const ManagementLayout = ({
@@ -11,7 +10,6 @@ const ManagementLayout = ({
       <SideMenu />
       <main className="flex-1 h-screen">{children}</main>
     </div>
-    
   )
 }
 
