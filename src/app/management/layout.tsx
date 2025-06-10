@@ -1,4 +1,4 @@
-import SideMenu from "@/components/SideMenu/SideMenu";
+import SideMenu from "@/components/Management/SideMenu/SideMenu";
 
 const ManagementLayout = ({
   children,

@@ -1,9 +1,10 @@
 "use client";
 
-import EditSiteModal from "@/components/Site/Modal/EditSiteModal";
-import DeleteSiteModal from "@/components/Site/Modal/DeleteSiteModal";
+
 import {useState} from "react";
-import {SiteInfoType} from "@/components/Site/SiteInfo/SiteInfo";
+import { SiteInfoType } from "../SiteInfo/SiteInfo";
+import EditSiteModal from "./EditSiteModal";
+import DeleteSiteModal from "./DeleteSiteModal";
 
 interface Props {
   siteInfo: SiteInfoType

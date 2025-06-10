@@ -1,6 +1,6 @@
 "use server";
 
-import { ArchitecturalDrawing } from "@/components/Blueprint/BlueprintInfo/BlueprintInfo";
+import { ArchitecturalDrawing } from "@/components/Management/Blueprint/BlueprintInfo/BlueprintInfo";
 import { redirect } from "next/navigation";
 
 interface FormState {
@@ -70,6 +70,7 @@ export const editBlueprint = async(params: ParamsType, state: FormState, formDat
 
 export const deleteBlueprint = async(architecturalDrawing: ArchitecturalDrawing, params: ParamsType) => {
 
+  console.log(architecturalDrawing);
   const {id, blueprintId} = params;
 
   const response = await fetch(`${process.env.ENDPOINT}/blueprints`, {
