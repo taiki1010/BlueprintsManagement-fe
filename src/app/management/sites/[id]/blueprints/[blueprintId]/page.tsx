@@ -1,4 +1,4 @@
-import BlueprintInfo from "@/components/Blueprint/BlueprintInfo/BlueprintInfo"
+import BlueprintInfo from "@/components/Management/Blueprint/BlueprintInfo/BlueprintInfo"
 
 const BlueprintIdPage = async({
   params

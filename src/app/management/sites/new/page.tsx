@@ -1,4 +1,5 @@
-import AddSiteForm from "@/components/Site/AddSiteForm/AddSiteForm"
+import AddSiteForm from "@/components/Management/Site/AddSiteForm/AddSiteForm"
+
 
 const AddSitePage = () => {
   return (

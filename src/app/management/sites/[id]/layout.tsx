@@ -1,4 +1,4 @@
-import BlueprintMenu from "@/components/BlueprintMenu/BlueprintMenu";
+import BlueprintMenu from "@/components/Management/BlueprintMenu/BlueprintMenu";
 
 const ManagementLayout = async ({
   children, params

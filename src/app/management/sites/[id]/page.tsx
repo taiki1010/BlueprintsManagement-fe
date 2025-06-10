@@ -1,4 +1,5 @@
-import SiteInfo from "@/components/Site/SiteInfo/SiteInfo"
+
+import SiteInfo from "@/components/Management/Site/SiteInfo/SiteInfo";
 import { redirect } from "next/navigation";
 
 const SitePage = async({
