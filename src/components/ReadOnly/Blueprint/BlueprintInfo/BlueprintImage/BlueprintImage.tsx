@@ -5,7 +5,6 @@ import { ArchitecturalDrawing, BlueprintInfoType } from "../BlueprintInfo"
 import Image from "next/image";
 
 const BlueprintImage = ({blueprintInfo}: {blueprintInfo: BlueprintInfoType}) => {
-  console.log(blueprintInfo);
 
   const architecturalDrawingList = blueprintInfo.architecturalDrawingList;
   const sorttedArchitecturalDrawingList = architecturalDrawingList.sort((a, b) => {
@@ -18,7 +17,7 @@ const BlueprintImage = ({blueprintInfo}: {blueprintInfo: BlueprintInfoType}) => 
   const [selected, setSelected] = useState<string>(initialArchitecturalDrawing.id);
 
   const filePath = architecturalDrawing.filePath
-  const imageUrl = filePath ? `${process.env.NEXT_PUBLIC_ENDPOINT}/${filePath}` : undefined;
+  const imageUrl = filePath ? `${process.env.NEXT_PUBLIC_S3_BASEURL}/${filePath}` : undefined;
 
   const selectItems = sorttedArchitecturalDrawingList.map((item: ArchitecturalDrawing) => (
     <option key={item.id} value={item.id}>{item.createdAt}</option>
