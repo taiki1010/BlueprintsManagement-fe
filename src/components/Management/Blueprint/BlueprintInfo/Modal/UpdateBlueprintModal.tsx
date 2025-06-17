@@ -11,10 +11,10 @@ export interface PropsType {
 
 const UpdateBlueprintModal = ({createdAtList, isOpenUpdateModal, setIsOpenUpdateModal}: PropsType) => {
 
-  const {blueprintId}: {blueprintId: string} = useParams();
+  const {id, blueprintId} = useParams() as {id: string, blueprintId: string};
   const pathName = usePathname();
 
-  const addArchitecturalDrawingWithParams = addArchitecturalDrawing.bind(null, blueprintId, pathName, createdAtList);
+  const addArchitecturalDrawingWithParams = addArchitecturalDrawing.bind(null, id, blueprintId, pathName, createdAtList);
 
   const initialState = {error: ""}
   const [state, formAction, isPending] = useActionState(addArchitecturalDrawingWithParams, initialState);
