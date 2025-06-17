@@ -11,7 +11,7 @@ export interface PropsType {
 
 const UpdateBlueprintModal = ({createdAtList, isOpenUpdateModal, setIsOpenUpdateModal}: PropsType) => {
 
-  const {blueprintId}: {blueprintId: string} = useParams();
+  const {blueprintId} = useParams() as {blueprintId: string};
   const pathName = usePathname();
 
   const addArchitecturalDrawingWithParams = addArchitecturalDrawing.bind(null, blueprintId, pathName, createdAtList);
