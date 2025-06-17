@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 's3.amazonaws.com',
+        hostname: 'blueprints-management-bucket.s3.ap-northeast-1.amazonaws.com',
         port: '',
         pathname: '/blueprints-management-bucket/**',
         search: '',

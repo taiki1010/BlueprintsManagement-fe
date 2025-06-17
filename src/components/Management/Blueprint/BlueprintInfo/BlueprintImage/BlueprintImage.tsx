@@ -23,7 +23,7 @@ const BlueprintImage = ({blueprintInfo}: {blueprintInfo: BlueprintInfoType}) => 
   const [selected, setSelected] = useState<string>(initialArchitecturalDrawing.id);
 
   const filePath = architecturalDrawing.filePath
-  const imageUrl = filePath ? `${process.env.NEXT_PUBLIC_ENDPOINT}/${filePath}` : undefined;
+  const imageUrl = filePath ? `${process.env.NEXT_PUBLIC_S3_BASEURL}/${filePath}` : undefined;
 
   const selectItems = sorttedArchitecturalDrawingList.map((item: ArchitecturalDrawing) => (
     <option key={item.id} value={item.id}>{item.createdAt}</option>
@@ -54,7 +54,7 @@ const BlueprintImage = ({blueprintInfo}: {blueprintInfo: BlueprintInfoType}) => 
       </div>
 
       <div className="relative h-full">
-        {imageUrl && <Image src={imageUrl} fill style={{objectFit: "contain"}} alt=""/>}
+        {imageUrl && <Image src={imageUrl} fill style={{objectFit: "contain"}} alt="画像を表示できません"/>}
       </div>
     </div>
   )

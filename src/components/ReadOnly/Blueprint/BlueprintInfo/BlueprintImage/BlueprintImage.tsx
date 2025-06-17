@@ -46,7 +46,7 @@ const BlueprintImage = ({blueprintInfo}: {blueprintInfo: BlueprintInfoType}) => 
       </div>
 
       <div className="relative h-full">
-        {imageUrl && <Image src={imageUrl} fill style={{objectFit: "contain"}} alt=""/>}
+        {imageUrl && <Image src={imageUrl} fill style={{objectFit: "contain"}} alt="画像を表示できません"/>}
       </div>
     </div>
   )
