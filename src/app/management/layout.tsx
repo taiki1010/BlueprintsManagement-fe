@@ -14,5 +14,3 @@ const ManagementLayout = ({
 }
 
 export default ManagementLayout
-
-export const dynamic = "force-dynamic";
