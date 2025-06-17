@@ -25,5 +25,3 @@ const NavList = async() => {
 }
 
 export default NavList
-
-export const dynamic = "force-dynamic";
