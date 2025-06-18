@@ -1,8 +1,6 @@
 
 const ManagementPage = async() => {
-  const response = await fetch(`${process.env.ENDPOINT}/sites`,{
-    method: "HEAD"
-});
+  const response = await fetch(`${process.env.ENDPOINT}/sites`, {cache: "no-cache"});
 
   return (
    <div className="px-10 py-10">
