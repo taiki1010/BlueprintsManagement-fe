@@ -1,7 +1,7 @@
 
 const ManagementPage = async() => {
   const response = await fetch(`${process.env.ENDPOINT}/sites`,{
-    method: "HEAD"
+    method: "HEAD", cache: "no-cache"
 });
 
   return (
