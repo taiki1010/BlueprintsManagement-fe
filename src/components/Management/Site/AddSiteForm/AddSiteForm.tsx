@@ -27,9 +27,10 @@ const AddSiteForm = () => {
           <label htmlFor="remark" className="block text-2xl font-medium mb-2">備考</label>
           <textarea id="remark" name="remark" value={remark} onChange={(e) => setRemark(e.target.value)} className="block py-1.5 px-2 w-full h-40 rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300"/>
         </div>
-        <p className="text-2xl text-red-500">{state.error}</p>
+        {!isPending && state.error && <p className="text-2xl text-red-500 mb-2">{state.error}</p>}
+        {isPending && <p className="text-2xl font-bold text-green-500 mb-2">現場を新規登録しています</p>}
         <div>
-          <button type="submit" className="block text-white text-2xl font-bold w-full h-14 rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer" disabled={isPending}>追加</button>
+          <button type="submit" className="block text-white text-2xl font-bold w-full h-14 rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer disabled:bg-blue-600" disabled={isPending}>追加</button>
         </div>
         
     </form>

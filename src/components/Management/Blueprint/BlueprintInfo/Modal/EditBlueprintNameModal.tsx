@@ -50,10 +50,11 @@ const EditBlueprintNameModal = ({isOpenEditBlueprintNameModal, setIsOpenEditBlue
                 <label htmlFor="name" className="block text-2xl font-medium mb-2">図面名</label>
                 <input type="text" id="name" name="name" value={inputName} onChange={(e) => setInputName(e.target.value)} className="block py-1.5 px-2 w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300" required />
               </div>
-              {state.error && <p className="text-2xl font-bold text-red-500 mb-2">{state.error}</p>}
+              {!isPending && state.error && <p className="text-2xl font-bold text-red-500 mb-2">{state.error}</p>}
+              {isPending && <p className="text-2xl font-bold text-green-500 mb-2">図面情報を更新しています</p>}
               <div className="flex gap-8">
-                <button type="submit" className="basis-1/2 block text-white text-2xl font-bold w-full h-14 rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer" disabled={isPending}>決定</button>
-                <button onClick={() => setIsOpenEditBlueprintNameModal(false)} className="basis-1/2 block text-white text-2xl font-bold h-14 rounded-md bg-gray-500 hover:bg-gray-600 cursor-pointer">キャンセル</button>
+                <button type="submit" className="basis-1/2 block text-white text-2xl font-bold w-full h-14 rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer disabled:bg-blue-600" disabled={isPending}>決定</button>
+                <button onClick={() => setIsOpenEditBlueprintNameModal(false)} className="basis-1/2 block text-white text-2xl font-bold h-14 rounded-md bg-gray-500 hover:bg-gray-600 cursor-pointer disabled:bg-gray-600" disabled={isPending}>キャンセル</button>
               </div>
             </form>
           </div>

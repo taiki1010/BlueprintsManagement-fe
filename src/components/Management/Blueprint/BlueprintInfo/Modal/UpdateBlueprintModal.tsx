@@ -53,10 +53,11 @@ const UpdateBlueprintModal = ({createdAtList, isOpenUpdateModal, setIsOpenUpdate
                 </label>
                 <input type="file" id="imageFile" name="imageFile" className="block px-1.5 py-2 w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300 cursor-pointer" required/>
               </div>
-              {state.error && <p className="text-2xl font-bold text-red-500 mb-2">{state.error}</p>}
+              {!isPending && state.error && <p className="text-2xl font-bold text-red-500 mb-2">{state.error}</p>}
+              {isPending && <p className="text-2xl font-bold text-green-500 mb-2">図面名を更新しています</p>}
               <div className="flex gap-8">
-                <button type="submit" className="basis-1/2 block text-white text-2xl font-bold w-full h-14 rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer" disabled={isPending}>決定</button>
-                <button onClick={() => setIsOpenUpdateModal(false)} className="basis-1/2 block text-white text-2xl font-bold h-14 rounded-md bg-gray-500 hover:bg-gray-600 cursor-pointer">キャンセル</button>
+                <button type="submit" className="basis-1/2 block text-white text-2xl font-bold w-full h-14 rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer disabled:bg-blue-600" disabled={isPending}>決定</button>
+                <button onClick={() => setIsOpenUpdateModal(false)} className="basis-1/2 block text-white text-2xl font-bold h-14 rounded-md bg-gray-500 hover:bg-gray-600 cursor-pointer disabled:bg-gray-600" disabled={isPending}>キャンセル</button>
               </div>
             </form>
           </div>
