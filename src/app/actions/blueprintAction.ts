@@ -70,7 +70,6 @@ export const editBlueprint = async(params: ParamsType, state: FormState, formDat
 
 export const deleteBlueprint = async(architecturalDrawing: ArchitecturalDrawing, params: ParamsType) => {
 
-  console.log(architecturalDrawing);
   const {id, blueprintId} = params;
 
   const response = await fetch(`${process.env.ENDPOINT}/blueprints`, {
