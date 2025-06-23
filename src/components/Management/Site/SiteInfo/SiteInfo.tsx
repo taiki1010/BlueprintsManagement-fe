@@ -26,7 +26,7 @@ const SiteInfo = async({id}: Props) => {
           <ShareButton id={id} name={name}/>
         </div>
         <p className="text-4xl mb-4">{address}</p>
-        <p className="text-2xl">{remark}</p>
+        <p className="text-2xl whitespace-pre-line">{remark}</p>
       </div>
       
       <EditOrDeleteModal siteInfo={siteInfo}/>
