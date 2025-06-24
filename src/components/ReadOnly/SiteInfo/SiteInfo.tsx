@@ -21,7 +21,7 @@ const SiteInfo = async({id}: Props) => {
       <div>
         <h2 className="text-6xl font-bold mb-8">{name}</h2>
         <p className="text-4xl mb-4">{address}</p>
-        <p className="text-2xl">{remark}</p>
+        <p className="text-2xl whitespace-pre-line">{remark}</p>
       </div>
     </div>
   )
